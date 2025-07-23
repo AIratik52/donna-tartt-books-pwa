@@ -1,0 +1,129 @@
+<?php
+require_once 'config.php';
+$recentSubmissions = getRecentSubmissions($conn);
+?>
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Донна Тартт - Мир книг</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <h1>Донна Тартт: мир загадочных романов</h1>
+        <nav>
+            <ul>
+                <li><a href="#about">Об авторе</a></li>
+                <li><a href="#books">Книги</a></li>
+                <li><a href="#quotes">Цитаты</a></li>
+                <li><a href="#reviews">Рецензии</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="about">
+            <h2>Об авторе</h2>
+            <img src="Донна Тартт.webp" alt="Портрет Донны Тартт" class="author-portrait">
+            <p>Донна Тартт (р. 1963) — американская писательница, лауреат Пулитцеровской премии за роман "Щегол".</p>
+            <p>Известна своими тщательно проработанными, атмосферными романами, которые выходят с большими интервалами.</p>
+        </section>
+
+        <section id="books">
+    <h2>Романы Донны Тартт</h2>
+    <div class="book-grid">
+        <article class="book-card">
+            <a href="secret-history.html" target="_blank" rel="noopener noreferrer">
+                <img src="Тайная история.webp" alt="Тайная история">
+            </a>
+            <h3>Тайная история (1992)</h3>
+            <p>Дебютный роман о группе студентов, изучающих древнегреческий и совершающих убийство.</p>
+        </article>
+        
+        <article class="book-card">
+            <a href="little-friend.html" target="_blank" rel="noopener noreferrer">
+                <img src="Маленький друг.webp" alt="Маленький друг">
+            </a>
+            <h3>Маленький друг (2002)</h3>
+            <p>История девочки, расследующей убийство своего брата в маленьком южном городке.</p>
+        </article>
+        
+        <article class="book-card">
+            <a href="goldfinch.html" target="_blank" rel="noopener noreferrer">
+                <img src="Щегол.webp" alt="Щегол">
+            </a>
+            <h3>Щегол (2013)</h3>
+            <p>Роман о мальчике, пережившем теракт и сохранившем картину "Щегол" Карела Фабрициуса.</p>
+        </article>
+    </div>
+</section>
+
+        <section id="quotes">
+            <h2>Знаменитые цитаты</h2>
+            <blockquote>
+                "Красота изменяет человека — это непреложный факт."
+                <footer>- Щегол</footer>
+            </blockquote>
+            <blockquote>
+                "Мы так стремились вырваться из нашего прошлого и повседневности. Но что мы получили взамен?"
+                <footer>- Тайная история</footer>
+            </blockquote>
+        </section>
+
+        <section id="reviews">
+        <h2>Рецензии критиков</h2>
+        <div class="review">
+            <h3>Нью-Йорк Таймс о "Щеголе"</h3>
+            <p>"Монументальное достижение... Роман, который подтверждает, что Тартт — один из важнейших американских писателей нашего времени."</p>
+        </div>
+
+        <div class="contact-form">
+            <h3>Оставить отзыв</h3>
+            <form action="submit.php" method="POST">
+                <input type="text" name="name" placeholder="Ваше имя" required>
+                <input type="email" name="email" placeholder="Ваш email" required>
+                <textarea name="message" placeholder="Ваш отзыв" required></textarea>
+                <button type="submit">Отправить</button>
+            </form>
+        </div>
+
+        <?php if (!empty($recentSubmissions)): ?>
+        <div class="recent-submissions">
+            <h3>Последние отзывы:</h3>
+            <?php foreach ($recentSubmissions as $submission): ?>
+            <div class="submission">
+                <h4><?php echo htmlspecialchars($submission['name']); ?></h4>
+                <p><?php echo htmlspecialchars($submission['message']); ?></p>
+                <small><?php echo date('d.m.Y H:i', strtotime($submission['created_at'])); ?></small>
+            </div>
+            <?php endforeach; ?>
+        </div>
+        <?php endif; ?>
+    </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Сайт о книгах Донны Тартт</p>
+        <p>Для образовательных целей</p>
+    </footer>
+    
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/sw.js')
+        .then(registration => {
+          console.log('ServiceWorker registration successful');
+        })
+        .catch(err => {
+          console.log('ServiceWorker registration failed: ', err);
+        });
+    });
+  }
+</script>
+
+    
+</body>
+</html>

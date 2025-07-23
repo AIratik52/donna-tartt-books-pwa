@@ -1,0 +1,21 @@
+{
+  "name": "Книги Донны Тартт",
+  "short_name": "Тартт",
+  "description": "Приложение с информацией о книгах Донны Тартт",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f9f5f0",
+  "theme_color": "#6c584c",
+  "icons": [
+    {
+      "src": "icons/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/icon-512x512.png",
+      "screens": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
