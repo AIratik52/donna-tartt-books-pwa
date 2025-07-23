@@ -5,6 +5,7 @@ $recentSubmissions = getRecentSubmissions($conn);
 <!DOCTYPE html>
 <html lang="ru">
 <head>
+    <link rel="manifest" href="/manifest.json">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Донна Тартт - Мир книг</title>
@@ -109,7 +110,7 @@ $recentSubmissions = getRecentSubmissions($conn);
         <p>&copy; 2025 Сайт о книгах Донны Тартт</p>
         <p>Для образовательных целей</p>
     </footer>
-    
+
 <script>
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
