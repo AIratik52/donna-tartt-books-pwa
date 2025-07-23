@@ -1,8 +1,5 @@
-<?php
-require_once 'config.php';
-$recentSubmissions = getRecentSubmissions($conn);
-?>
-<!DOCTYPE html>
+
+
 <html lang="ru">
 
 <head>
@@ -93,18 +90,7 @@ $recentSubmissions = getRecentSubmissions($conn);
             </form>
         </div>
 
-        <?php if (!empty($recentSubmissions)): ?>
-        <div class="recent-submissions">
-            <h3>Последние отзывы:</h3>
-            <?php foreach ($recentSubmissions as $submission): ?>
-            <div class="submission">
-                <h4><?php echo htmlspecialchars($submission['name']); ?></h4>
-                <p><?php echo htmlspecialchars($submission['message']); ?></p>
-                <small><?php echo date('d.m.Y H:i', strtotime($submission['created_at'])); ?></small>
-            </div>
-            <?php endforeach; ?>
-        </div>
-        <?php endif; ?>
+        
     </section>
     </main>
 
